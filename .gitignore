@@ -1,0 +1,5 @@
+*.yml
+.log.git
+composer.lock
+nbproject/*
+.idea
