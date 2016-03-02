@@ -1,5 +1,5 @@
 # OpenSSL intermediate CA configuration file.
-# Copy to `/ca/intermediate/openssl.cnf`.
+# Copy to `/CAs/intermediate/openssl.cnf`.
 
 [ ca ]
 # `man ca`
@@ -7,7 +7,7 @@ default_ca = CA_default
 
 [ CA_default ]
 # Directory and file locations.
-dir               = /ca/intermediate
+dir               = /CAs/intermediate
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -81,7 +81,7 @@ emailAddress                    = Email Address
 countryName_default             = AR
 stateOrProvinceName_default     = Argentina
 localityName_default            =
-0.organizationName_default      = SIU
+0.organizationName_default      = ROOTCA
 organizationalUnitName_default  =
 emailAddress_default            =
 
