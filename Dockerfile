@@ -5,8 +5,12 @@ RUN apt-get update && apt-get install openssl nano \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
-#Define una variable para poder usar mc
-RUN echo "export TERM=xterm" >> /root/.bashrc
+#Define una variable para poder usar mc y un par de directorios basicos
+RUN echo "export TERM=xterm" >> /root/.bashrc \
+    && echo "export dir_rootCA=/CAs/rootCA" >> /root/.bashrc \
+    && echo "export dir_interCA=/CAs/intermediate" >> /root/.bashrc 
+
+
 ENV CA_KEY_LENGTH=4096
 ENV CA_DAYS=7300
 

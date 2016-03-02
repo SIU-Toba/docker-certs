@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /ca
+
 #Generate certificate chain
-cat intermediate/certs/intermediate.cert.pem certs/ca.cert.pem > intermediate/certs/ca-chain.cert.pem
-chmod 444 intermediate/certs/ca-chain.cert.pem
+cat $dir_interCA/certs/intermediate.cert.pem $dir_rootCA/certs/ca.cert.pem > $dir_interCA/certs/ca-chain.cert.pem
+chmod 444 $dir_interCA/certs/ca-chain.cert.pem

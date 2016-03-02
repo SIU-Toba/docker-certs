@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -e /ca/index.txt ]; then
+if [ -e $dir_rootCA/index.txt ]; then
     echo 'CA existente';
     exit 0;
 else
@@ -15,15 +15,14 @@ else
 	exit -1;
     fi
     if [ -z "$CA_DATA" ]; then
-	CA_DATA="/C=AR/O=ROOTCA/OU=SIU/ST=Baires/CN=ROOTCA/";
+	CA_DATA="/C=AR/O=ROOTCA/OU=SIUTEST/ST=Baires/CN=ROOTCA/";
     fi
 fi
 
-cd /ca
-touch index.txt
+touch $dir_rootCA/index.txt
 #Generate CA private Key
-openssl genpkey -algorithm RSA -out private/ca.key.pem -aes-256-cbc -pkeyopt rsa_keygen_bits:$CA_KEY_LENGTH -pass env:CA_PWD
-chmod 400 private/ca.key.pem
+openssl genpkey -algorithm RSA -out $dir_rootCA/private/ca.key.pem -aes-256-cbc -pkeyopt rsa_keygen_bits:$CA_KEY_LENGTH -pass env:CA_PWD
+chmod 400 $dir_rootCA/private/ca.key.pem
 
 #Generate CA certificate
-openssl req -config openssl.cnf -key private/ca.key.pem -new -x509 -days $CA_DAYS -sha256 -extensions v3_ca -out certs/ca.cert.pem -subj "$CA_DATA" -passin env:CA_PWD
+openssl req -config $dir_rootCA/openssl.cnf -key $dir_rootCA/private/ca.key.pem -new -x509 -days $CA_DAYS -sha256 -extensions v3_ca -out $dir_rootCA/certs/ca.cert.pem -subj "$CA_DATA" -passin env:CA_PWD
