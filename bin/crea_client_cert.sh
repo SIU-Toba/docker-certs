@@ -13,7 +13,7 @@ if [ -z "$CA_INT_PWD" ]; then
     exit -1;
 fi
 if [ -z "$CRT_DATA" ]; then
-    CRT_DATA="/C=AR/O=ROOTCA/OU=SIU/ST=Baires/CN=$NOMBRE_SITIO/";
+    CRT_DATA="/C=AR/O=ROOTCA/OU=SIUTEST/ST=Baires/CN=$NOMBRE_SITIO/";
 fi
 
 

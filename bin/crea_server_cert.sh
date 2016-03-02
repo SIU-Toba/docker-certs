@@ -12,9 +12,8 @@ if [ -z "$CA_INT_PWD" ]; then
     echo 'Clave requerida, especifique CA_INT_PWD';
     exit -1;
 fi
-
 if [ -z "$CRT_DATA" ]; then
-    CRT_DATA="/C=AR/O=ROOTCA/OU=SIU/ST=Baires/CN=$NOMBRE_SITIO/";
+    CRT_DATA="/C=AR/O=ROOTCA/OU=SIUTEST/ST=Baires/CN=$NOMBRE_SITIO/";
 fi
 
 if [ ! -e $dir_interCA/private/server/$NOMBRE_SITIO.key.pem ]; then
