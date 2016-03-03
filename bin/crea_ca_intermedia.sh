@@ -8,8 +8,8 @@ else
     if [ -z "$CA_KEY_LENGTH" ]; then
 	CA_KEY_LENGHT=4096;
     fi
-    if [ -z "$CA_DAYS" ]; then
-	CA_DAYS=1825;
+    if [ -z "$CA_INT_DAYS" ]; then
+	CA_INT_DAYS=1825;
     fi
     if [ -z "$CA_INT_PWD" ]; then
 	echo 'Clave requerida, especifique CA_INT_PWD';
@@ -33,5 +33,5 @@ chmod 400 $dir_interCA/private/intermediate.key.pem
 openssl req -config $dir_interCA/openssl.cnf -new -sha256 -key $dir_interCA/private/intermediate.key.pem -out $dir_interCA/csr/intermediate.csr.pem -subj "$CA_INT_DATA" -passin env:CA_INT_PWD
 
 #Generate CA certificate
-yes | openssl ca -config $dir_rootCA/openssl.cnf -extensions v3_intermediate_ca -days $CA_DAYS -notext -md sha256 -in $dir_interCA/csr/intermediate.csr.pem -out $dir_interCA/certs/intermediate.cert.pem -passin env:CA_PWD
+yes | openssl ca -config $dir_rootCA/openssl.cnf -extensions v3_intermediate_ca -days $CA_INT_DAYS -notext -md sha256 -in $dir_interCA/csr/intermediate.csr.pem -out $dir_interCA/certs/intermediate.cert.pem -passin env:CA_PWD
 chmod 444 $dir_interCA/certs/intermediate.cert.pem
