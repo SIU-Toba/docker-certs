@@ -42,9 +42,8 @@ RUN chmod +x /entrypoint.sh \
 COPY ./configs/ca_ssl /CAs/rootCA/openssl.cnf
 COPY ./configs/in_ssl /CAs/intermediate/openssl.cnf
 
-##VOLUME /CAs/intermediate/certs
-##VOLUME /CAs/intermediate/private/server
-##VOLUME /CAs/intermediate/private/client
+#VOLUME /CAs/rootCA
+#VOLUME /CAs/intermediate
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 

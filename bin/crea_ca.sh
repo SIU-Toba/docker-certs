@@ -1,7 +1,6 @@
 #!/bin/bash
 
-if [ -e $dir_rootCA/index.txt ]; then
-    echo 'CA existente';
+if [ -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
     exit 0;
 else
     if [ -z "$CA_KEY_LENGTH" ]; then

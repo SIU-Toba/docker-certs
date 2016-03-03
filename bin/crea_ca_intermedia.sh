@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #Genera una CA intermedia, solo una esta disponible
-if [ -e $dir_interCA/index.txt ]; then
-    echo 'CA Intermedia existente.. prosiguiendo';
+if [ -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
     exit 0;
 else
     if [ -z "$CA_KEY_LENGTH" ]; then

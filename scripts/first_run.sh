@@ -1,6 +1,7 @@
 #!/bin/bash
 
-openssl rand -hex 16  > /CAs/rootCA/serial
-openssl rand -hex 16  > /CAs/intermediate/serial
+if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
+    openssl rand -hex 16  > /CAs/rootCA/serial;
+    openssl rand -hex 16  > /CAs/intermediate/serial;
+fi
 
-mv /entrypoint.d/first_run.sh /entrypoint.d/first_run.old
