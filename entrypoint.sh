@@ -1,10 +1,10 @@
 #!/bin/bash
 
-DOCKER_STATUS_PATH=/var/local/docker-data/containers-status
-export DOCKER_CONFIG_PATH=$dir_rootCA
+DOCKER_STATUS_PATH=/var/local/docker-data/containers-status;
+export DOCKER_CONFIG_PATH=/CAs/rootCA;
 
 #Si no hay marca de inicializacion borro los contenidos anteriores
-if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ] && [ -f $dir_interCA/index.txt ]; then
+if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ] && [ -f $dir_rootCA/index.txt ]; then
     #Elimino los certs de la CA intermedia, CA root queda por si es externa
     rm -f $dir_interCA/csr/*.pem $dir_interCA/private/*.pem $dir_interCA/certs/*.pem
     #Elimino los certificados generados
@@ -42,7 +42,7 @@ if [ ! -z $DOCKER_WEB_SCRIPT ]; then
 fi
 
 #Dejo marca de inicializacion completada
-if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ] && [ -f $dir_interCA/index.txt -a -s $dir_interCA/index.txt ]; then
+if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ] && [ -f $dir_rootCA/index.txt -a -s $dir_rootCA/index.txt ]; then
     echo "true" > $DOCKER_CONFIG_PATH/CA_INITIALIZED
 fi
 
