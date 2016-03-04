@@ -12,7 +12,7 @@ Esta imagen lee un par de variables de entorno que permite encadenar el arranque
     DOCKER_WAIT_FOR : Nombre del container al cual esperar por ejemplo "otra_aplicacion"
 ```
 
-Para que esto funcione los containers involucrados deben compartir un volumen comun publicado en ` /var/local/docker-data/containers-status `, asi mismo se comparte un volumen ` /var/local/docker-data/containers-config ` donde dejar configuraciones del contenedor.
+Para que esto funcione los containers involucrados deben compartir un volumen comun publicado en ` /var/local/docker-data/containers-status `.
 
 ## Variables de entorno relevantes
  * `CA_PWD`  y  `CA_INT_PWD` : Definen los passwords para crear las CA's
