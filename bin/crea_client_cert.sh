@@ -23,10 +23,11 @@ if [ ! -f $dir_interCA/private/client/$NOMBRE_SITIO.key.pem ]; then
     chmod 400 $dir_interCA/private/client/$NOMBRE_SITIO.key.pem
 
     #Generate Certificate Request
-    openssl req -config $dir_interCA/openssl.cnf -key $dir_interCA/private/client/$NOMBRE_SITIO.key.pem -new -sha256 -out $dir_interCA/csr/$NOMBRE_SITIO.csr.pem -subj $CRT_DATA
+    openssl req -config $dir_configCA/in_ssl.cnf -key $dir_interCA/private/client/$NOMBRE_SITIO.key.pem -new -sha256 -out $dir_interCA/csr/$NOMBRE_SITIO.csr.pem -subj $CRT_DATA
 
     #Generate Certificate
-    yes | openssl ca -config $dir_interCA/openssl.cnf -extensions usr_cert -days $CRT_DAYS -notext -md sha256 -in $dir_interCA/csr/$NOMBRE_SITIO.csr.pem -out $dir_interCA/certs/client/$NOMBRE_SITIO.cert.pem -passin env:CA_INT_PWD
+    yes | openssl ca -config $dir_configCA/in_ssl.cnf -extensions usr_cert -days $CRT_DAYS -notext -md sha256 -in $dir_interCA/csr/$NOMBRE_SITIO.csr.pem -out $dir_interCA/certs/client/$NOMBRE_SITIO.cert.pem -passin env:CA_INT_PWD
+    
     chmod 444 $dir_interCA/certs/client/$NOMBRE_SITIO.cert.pem
 fi
 

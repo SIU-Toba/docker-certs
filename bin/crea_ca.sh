@@ -24,4 +24,4 @@ openssl genpkey -algorithm RSA -out $dir_rootCA/private/ca.key.pem -aes-256-cbc 
 chmod 400 $dir_rootCA/private/ca.key.pem
 
 #Generate CA certificate
-openssl req -config $dir_rootCA/openssl.cnf -key $dir_rootCA/private/ca.key.pem -new -x509 -days $CA_DAYS -sha256 -extensions v3_ca -out $dir_rootCA/certs/ca.cert.pem -subj "$CA_DATA" -passin env:CA_PWD
+openssl req -config $dir_configCA/root_ssl.cnf -key $dir_rootCA/private/ca.key.pem -new -x509 -days $CA_DAYS -sha256 -extensions v3_ca -out $dir_rootCA/certs/ca.cert.pem -subj "$CA_DATA" -passin env:CA_PWD

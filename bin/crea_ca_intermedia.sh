@@ -29,8 +29,9 @@ openssl genpkey -algorithm RSA -out $dir_interCA/private/intermediate.key.pem -a
 chmod 400 $dir_interCA/private/intermediate.key.pem
 
 #Generate CA certificate request
-openssl req -config $dir_interCA/openssl.cnf -new -sha256 -key $dir_interCA/private/intermediate.key.pem -out $dir_interCA/csr/intermediate.csr.pem -subj "$CA_INT_DATA" -passin env:CA_INT_PWD
+openssl req -config $dir_configCA/in_ssl.cnf -new -sha256 -key $dir_interCA/private/intermediate.key.pem -out $dir_interCA/csr/intermediate.csr.pem -subj "$CA_INT_DATA" -passin env:CA_INT_PWD
 
 #Generate CA certificate
-yes | openssl ca -config $dir_rootCA/openssl.cnf -extensions v3_intermediate_ca -days $CA_INT_DAYS -notext -md sha256 -in $dir_interCA/csr/intermediate.csr.pem -out $dir_interCA/certs/intermediate.cert.pem -passin env:CA_PWD
+yes | openssl ca -config $dir_configCA/root_ssl.cnf -extensions v3_intermediate_ca -days $CA_INT_DAYS -notext -md sha256 -in $dir_interCA/csr/intermediate.csr.pem -out $dir_interCA/certs/intermediate.cert.pem -passin env:CA_PWD
+
 chmod 444 $dir_interCA/certs/intermediate.cert.pem
