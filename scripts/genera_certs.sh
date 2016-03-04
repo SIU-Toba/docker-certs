@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
+
+if [ ! -e $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
+    echo ' Inicializando CA, CA Intermedia y generacion de certificados... ';
     crea_ca.sh;
     test1=$?;
 
@@ -23,4 +25,6 @@ if [ ! -f $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
             done;
         fi
     fi
+else
+    echo ' Nada por hacer, todo inicializado ';
 fi
