@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER rdalinger@siu.edu.ar
 
-RUN apt-get update && apt-get install openssl \
+RUN apt-get update && apt-get install -y openssl \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
