@@ -1,0 +1,32 @@
+########################################
+# DATOS PERSISTENTES
+########################################
+#data:
+#  image: postgres:9.4
+#  command: "true"
+#  volumes:
+#   #secuenciacion de containers
+#   - ./docker-data/containers-status:/var/local/docker-data/containers-status
+#
+#   #postgresql: Comentar en el caso de usar OSX
+#   - ./docker-data/pgdata:/var/lib/postgresql/data   
+#
+#   #certs
+#   - ./docker-data/certs/certificados:/CAs/intermediate
+#   - ./docker-data/certs/root:/CAs/rootCA
+   
+  
+########################################
+# Certificate Authority
+########################################
+certs:
+  image: siutoba/docker-certs
+  container_name: certs
+  env_file: docker-template.env
+  environment:
+    DOCKER_NAME           : certs
+#  volumes_from: 
+#    - data
+  volumes:
+    - ./docker-data/certs/certificados:/CAs/intermediate
+    - ./docker-data/certs/root:/CAs/rootCA
