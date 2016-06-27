@@ -3,3 +3,4 @@
 composer.lock
 nbproject/*
 .idea
+docker-data
