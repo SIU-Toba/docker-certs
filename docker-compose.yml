@@ -22,7 +22,7 @@
 certs:
   image: siutoba/docker-certs
   container_name: certs
-  env_file: docker-template.env
+  env_file: docker.env
   environment:
     DOCKER_NAME           : certs
 #  volumes_from: 

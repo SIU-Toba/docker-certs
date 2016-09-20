@@ -15,6 +15,8 @@ Esta imagen lee un par de variables de entorno que permite encadenar el arranque
 Para que esto funcione los containers involucrados deben compartir un volumen comun publicado en ` /var/local/docker-data/containers-status `.
 
 ## Variables de entorno relevantes
+Se leen del archivo ` docker.env ` que es una copia de ` docker-template.env ` con su contenido modificado. A continuación detallo las mas importantes y su función:
+
  * `CA_PWD`  y  `CA_INT_PWD` : Definen los passwords para crear las CA's
  * `LISTA_SERVER` : Define una lista de dominios para los que se crearan certificados
  * `LISTA_CLIENTES` : Define una lista de nombres a los que se les crearan certificados para actuar como clientes
