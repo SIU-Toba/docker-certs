@@ -13,7 +13,7 @@ if [ ! -e $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
         crea_cadena.sh;        
     else
         echo ' Falló el intento de creación de una CA ';
-        exit(-1);
+        exit -1;
     fi
 else
     echo ' Nada por hacer, todas las CAs inicializadas ';
