@@ -10,21 +10,26 @@ if [ ! -e $DOCKER_CONFIG_PATH/CA_INITIALIZED ]; then
     test2=$?;
 
     if [ $test1 == 0 ] && [ $test2 == 0 ]; then
-        crea_cadena.sh;
-        if [ ! -z "$LISTA_SERVER" ]; then
-            for servidor in $LISTA_SERVER 
-            do
-                crea_server_cert.sh $servidor;
-            done;
-        fi
-
-        if [ ! -z "$LISTA_CLIENTES" ]; then
-            for cliente in $LISTA_CLIENTES 
-            do
-                crea_client_cert.sh $cliente;
-            done;
-        fi
+        crea_cadena.sh;        
+    else
+        echo ' Falló el intento de creación de una CA ';
+        exit(-1);
     fi
 else
-    echo ' Nada por hacer, todo inicializado ';
+    echo ' Nada por hacer, todas las CAs inicializadas ';
+fi
+
+echo ' Generando certificados... ';
+if [ ! -z "$LISTA_SERVER" ]; then
+    for servidor in $LISTA_SERVER 
+    do
+        crea_server_cert.sh $servidor;
+    done;
+fi
+
+if [ ! -z "$LISTA_CLIENTES" ]; then
+    for cliente in $LISTA_CLIENTES 
+    do
+        crea_client_cert.sh $cliente;
+    done;
 fi
