@@ -13,9 +13,10 @@ if [ -z "$CA_INT_PWD" ]; then
     exit -1;
 fi
 if [ -z "$CRT_DATA" ]; then
-    CRT_DATA="/C=AR/O=ROOTCA/OU=SIUTEST/ST=Baires/CN=$NOMBRE_SITIO/";
+    CRT_DATA="/C=AR/O=ROOTCA/OU=SIUTEST/ST=Baires";
 fi
 
+CRT_DATA="$CRT_DATA/CN=$NOMBRE_SITIO/";
 if [ ! -f $dir_interCA/private/server/$NOMBRE_SITIO.key.pem ]; then
     #Generate Private key 
     openssl genpkey -algorithm RSA -out $dir_interCA/private/server/$NOMBRE_SITIO.key.pem -pkeyopt rsa_keygen_bits:$CRT_KEY_LENGTH
