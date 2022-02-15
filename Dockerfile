@@ -1,9 +1,7 @@
-FROM ubuntu
+FROM alpine:latest
 MAINTAINER rdalinger@siu.edu.ar
 
-RUN apt-get update && apt-get install -y openssl \
-    && apt-get clean \
-    && rm -r /var/lib/apt/lists/*
+RUN apk update && apk add openssl bash --no-cache
 
 #Define una variable para poder usar mc y un par de directorios basicos
 RUN echo "export TERM=xterm" >> /root/.bashrc
